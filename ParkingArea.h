@@ -12,6 +12,9 @@ private:
     int capacity;        // Maximum capacity
 
 public:
+    // Default constructor
+    ParkingArea();
+
     // Constructor with initial capacity
     ParkingArea(int initialCapacity);
 

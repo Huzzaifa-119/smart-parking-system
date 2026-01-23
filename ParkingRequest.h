@@ -40,6 +40,12 @@ public:
     void setVehicleID(int id);
     void setRequestedZone(int zone);
     void setRequestTime(int time);
+
+    // Getters for attributes
+    int getRequestID() const;
+    int getVehicleID() const;
+    int getRequestedZone() const;
+    int getRequestTime() const;
 };
 
 #endif // PARKING_REQUEST_H

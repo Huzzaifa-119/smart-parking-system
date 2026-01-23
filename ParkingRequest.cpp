@@ -72,3 +72,19 @@ void ParkingRequest::setRequestedZone(int zone) {
 void ParkingRequest::setRequestTime(int time) {
     requestTime = time;
 }
+
+int ParkingRequest::getRequestID() const {
+    return requestID;
+}
+
+int ParkingRequest::getVehicleID() const {
+    return vehicleID;
+}
+
+int ParkingRequest::getRequestedZone() const {
+    return requestedZone;
+}
+
+int ParkingRequest::getRequestTime() const {
+    return requestTime;
+}

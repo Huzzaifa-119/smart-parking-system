@@ -31,7 +31,7 @@ void RollbackManager::undoLast(ParkingArea* areas, int numAreas, ParkingRequest*
 
         // Step 3: Restore request state by cancelling the associated request
         for (int i = 0; i < numRequests; i++) {
-            if (requests[i].requestID == rec.requestID) {
+            if (requests[i].getRequestID() == rec.requestID) {
                 requests[i].cancel();
                 break;
             }

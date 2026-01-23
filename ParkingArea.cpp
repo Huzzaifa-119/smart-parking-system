@@ -1,5 +1,13 @@
 #include "ParkingArea.h"
 
+ParkingArea::ParkingArea() {
+    areaID = 0;
+    zoneID = 0;
+    capacity = 10;  // Default capacity
+    numSlots = 0;
+    slots = new ParkingSlot[capacity];
+}
+
 ParkingArea::ParkingArea(int initialCapacity) {
     areaID = 0;
     zoneID = 0;

@@ -67,12 +67,12 @@ int ParkingSystem::allocateForRequest(int requestIndex) {
     ParkingRequest& req = requests[requestIndex];
 
     // Attempt to allocate a slot using the allocation engine
-    int slotID = allocEngine->allocateSlot(req.vehicleID, req.requestedZone, numAreas);
+    int slotID = allocEngine->allocateSlot(req.getVehicleID(), req.getRequestedZone(), numAreas);
 
     if (slotID != -1) {
         // Record the allocation for potential rollback
         int areaIndex = allocEngine->getLastAllocatedArea();
-        rollbackMgr->recordAllocation(areaIndex, slotID, req.requestID);
+        rollbackMgr->recordAllocation(areaIndex, slotID, req.getRequestID());
 
         // Update request state to allocated
         req.allocate();

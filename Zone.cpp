@@ -1,6 +1,14 @@
 #include "Zone.h"
 #include <cstring>  // For strcpy
 
+Zone::Zone() {
+    zoneID = 0;
+    zoneName[0] = '\0';  // Initialize as empty string
+    capacity = 10;  // Default capacity
+    numSlots = 0;
+    parkingSlots = new ParkingSlot[capacity];
+}
+
 Zone::Zone(int initialCapacity) {
     zoneID = 0;
     zoneName[0] = '\0';  // Initialize as empty string

@@ -12,6 +12,9 @@ private:
     int capacity;      // Maximum capacity of the parking slots array
 
 public:
+    // Default constructor
+    Zone();
+
     // Constructor with initial capacity
     Zone(int initialCapacity);
 
