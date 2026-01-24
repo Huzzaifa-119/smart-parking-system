@@ -6,6 +6,7 @@ ParkingRequest::ParkingRequest() {
     vehicleID = 0;
     requestedZone = 0;
     requestTime = 0;
+    exitTime = 0;  // Not set until RELEASED
     currentState = REQUESTED;
 }
 
@@ -87,4 +88,12 @@ int ParkingRequest::getRequestedZone() const {
 
 int ParkingRequest::getRequestTime() const {
     return requestTime;
+}
+
+int ParkingRequest::getExitTime() const {
+    return exitTime;
+}
+
+void ParkingRequest::setExitTime(int time) {
+    exitTime = time;
 }

@@ -139,10 +139,26 @@ double ParkingSystem::getZoneUtilization(int zoneID) const {
 }
 
 double ParkingSystem::getAverageParkingDuration() const {
-    // Placeholder: Average parking duration calculation
-    // Currently not implemented as duration tracking is not in place
-    // Formula would be: sum of (end_time - start_time) for completed requests / number of completed requests
-    return 0.0;
+    // Calculate average parking duration from completed requests
+    // Duration = exitTime - requestTime for all RELEASED requests
+    int totalDuration = 0;
+    int completedCount = 0;
+    
+    for (int i = 0; i < numRequests; i++) {
+        if (requests[i].getState() == ParkingRequest::RELEASED && requests[i].getExitTime() > 0) {
+            int duration = requests[i].getExitTime() - requests[i].getRequestTime();
+            if (duration > 0) {
+                totalDuration += duration;
+                completedCount++;
+            }
+        }
+    }
+    
+    if (completedCount == 0) {
+        return 0.0;
+    }
+    
+    return static_cast<double>(totalDuration) / completedCount;
 }
 
 int ParkingSystem::getCancelledRequests() const {
@@ -163,4 +179,20 @@ int ParkingSystem::getCompletedRequests() const {
         }
     }
     return completed;
+}
+
+int ParkingSystem::getPeakUsageZone() const {
+    // Find zone with highest utilization
+    int peakZoneID = -1;
+    double maxUtilization = -1.0;
+    
+    for (int i = 0; i < numZones; i++) {
+        double utilization = getZoneUtilization(zones[i].getZoneID());
+        if (utilization > maxUtilization) {
+            maxUtilization = utilization;
+            peakZoneID = zones[i].getZoneID();
+        }
+    }
+    
+    return peakZoneID;
 }

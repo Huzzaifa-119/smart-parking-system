@@ -17,6 +17,7 @@ private:
     int vehicleID;
     int requestedZone;
     int requestTime;
+    int exitTime;  // Time when vehicle exits (when state becomes RELEASED)
     State currentState;
 
 public:
@@ -46,6 +47,8 @@ public:
     int getVehicleID() const;
     int getRequestedZone() const;
     int getRequestTime() const;
+    int getExitTime() const;
+    void setExitTime(int time);
 };
 
 #endif // PARKING_REQUEST_H

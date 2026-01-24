@@ -78,6 +78,9 @@ public:
 
     // Analytics: Get number of completed requests (those that reached RELEASED state)
     int getCompletedRequests() const;
+
+    // Analytics: Get the zone with peak/highest utilization
+    int getPeakUsageZone() const;
 };
 
 #endif // PARKING_SYSTEM_H

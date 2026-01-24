@@ -7,6 +7,9 @@ Zone::Zone() {
     capacity = 10;  // Default capacity
     numSlots = 0;
     parkingSlots = new ParkingSlot[capacity];
+    adjacencyCapacity = 10;  // Default adjacency capacity
+    numAdjacentZones = 0;
+    adjacentZones = new int[adjacencyCapacity];
 }
 
 Zone::Zone(int initialCapacity) {
@@ -15,10 +18,14 @@ Zone::Zone(int initialCapacity) {
     capacity = initialCapacity;
     numSlots = 0;
     parkingSlots = new ParkingSlot[capacity];
+    adjacencyCapacity = 10;  // Default adjacency capacity
+    numAdjacentZones = 0;
+    adjacentZones = new int[adjacencyCapacity];
 }
 
 Zone::~Zone() {
     delete[] parkingSlots;
+    delete[] adjacentZones;
 }
 
 void Zone::addSlot(const ParkingSlot& slot) {
@@ -63,4 +70,36 @@ void Zone::setZoneName(const char* name) {
     if (name != nullptr) {
         strcpy(zoneName, name);
     }
+}
+
+void Zone::addAdjacentZone(int adjacentZoneID) {
+    // Check if already adjacent
+    for (int i = 0; i < numAdjacentZones; i++) {
+        if (adjacentZones[i] == adjacentZoneID) {
+            return;  // Already adjacent, skip
+        }
+    }
+    
+    // Add if capacity allows
+    if (numAdjacentZones < adjacencyCapacity) {
+        adjacentZones[numAdjacentZones] = adjacentZoneID;
+        numAdjacentZones++;
+    }
+}
+
+bool Zone::isAdjacentZone(int zoneID) const {
+    for (int i = 0; i < numAdjacentZones; i++) {
+        if (adjacentZones[i] == zoneID) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int* Zone::getAdjacentZones() const {
+    return adjacentZones;
+}
+
+int Zone::getNumAdjacentZones() const {
+    return numAdjacentZones;
 }

@@ -13,6 +13,15 @@ int main() {
     zone1.setZoneName("North Zone");
     system.addZone(zone1);
 
+    Zone zone2;
+    zone2.setZoneID(2);
+    zone2.setZoneName("South Zone");
+    system.addZone(zone2);
+
+    // Add zone adjacency
+    zone1.addAdjacentZone(2);
+    zone2.addAdjacentZone(1);
+
     // Create and add a parking area
     ParkingArea area1(3);
     area1.setAreaID(1);
@@ -38,6 +47,25 @@ int main() {
     area1.addSlot(slot3);
 
     system.addArea(area1);
+
+    // Create and add a parking area for zone 2
+    ParkingArea area2(2);
+    area2.setAreaID(2);
+    area2.setZoneID(2);
+
+    ParkingSlot slot4;
+    slot4.setSlotID(201);
+    slot4.setZoneID(2);
+    slot4.setIsAvailable(true);
+    area2.addSlot(slot4);
+
+    ParkingSlot slot5;
+    slot5.setSlotID(202);
+    slot5.setZoneID(2);
+    slot5.setIsAvailable(true);
+    area2.addSlot(slot5);
+
+    system.addArea(area2);
 
     // Create and add a vehicle
     Vehicle veh1;
@@ -77,6 +105,13 @@ int main() {
     std::cout << "Active requests after rollback: " << system.getActiveRequests() << std::endl;
     std::cout << "Cancelled requests after rollback: " << system.getCancelledRequests() << std::endl;
     std::cout << "Zone 1 utilization after rollback: " << system.getZoneUtilization(1) << "%" << std::endl;
+
+    std::cout << "\nZone adjacency and peak usage:" << std::endl;
+    std::cout << "Zone 1 adjacent to zone 2: " << (zone1.isAdjacentZone(2) ? "Yes" : "No") << std::endl;
+    std::cout << "Peak usage zone: " << system.getPeakUsageZone() << std::endl;
+
+    std::cout << "\nDuration analytics:" << std::endl;
+    std::cout << "Average parking duration (completed requests): " << system.getAverageParkingDuration() << " time units" << std::endl;
 
     std::cout << "\nTest completed." << std::endl;
     return 0;
