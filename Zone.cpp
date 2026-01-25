@@ -23,9 +23,58 @@ Zone::Zone(int initialCapacity) {
     adjacentZones = new int[adjacencyCapacity];
 }
 
+Zone::Zone(const Zone& other) {
+    zoneID = other.zoneID;
+    strcpy(zoneName, other.zoneName);
+    capacity = other.capacity;
+    numSlots = other.numSlots;
+    parkingSlots = new ParkingSlot[capacity];
+    for (int i = 0; i < numSlots; i++) {
+        parkingSlots[i] = other.parkingSlots[i];
+    }
+    adjacencyCapacity = other.adjacencyCapacity;
+    numAdjacentZones = other.numAdjacentZones;
+    adjacentZones = new int[adjacencyCapacity];
+    for (int i = 0; i < numAdjacentZones; i++) {
+        adjacentZones[i] = other.adjacentZones[i];
+    }
+}
+
+Zone& Zone::operator=(const Zone& other) {
+    if (this != &other) {
+        if (parkingSlots != nullptr) {
+            delete[] parkingSlots;
+        }
+        if (adjacentZones != nullptr) {
+            delete[] adjacentZones;
+        }
+        zoneID = other.zoneID;
+        strcpy(zoneName, other.zoneName);
+        capacity = other.capacity;
+        numSlots = other.numSlots;
+        parkingSlots = new ParkingSlot[capacity];
+        for (int i = 0; i < numSlots; i++) {
+            parkingSlots[i] = other.parkingSlots[i];
+        }
+        adjacencyCapacity = other.adjacencyCapacity;
+        numAdjacentZones = other.numAdjacentZones;
+        adjacentZones = new int[adjacencyCapacity];
+        for (int i = 0; i < numAdjacentZones; i++) {
+            adjacentZones[i] = other.adjacentZones[i];
+        }
+    }
+    return *this;
+}
+
 Zone::~Zone() {
-    delete[] parkingSlots;
-    delete[] adjacentZones;
+    if (parkingSlots != nullptr) {
+        delete[] parkingSlots;
+        parkingSlots = nullptr;
+    }
+    if (adjacentZones != nullptr) {
+        delete[] adjacentZones;
+        adjacentZones = nullptr;
+    }
 }
 
 void Zone::addSlot(const ParkingSlot& slot) {

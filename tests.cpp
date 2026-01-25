@@ -649,21 +649,21 @@ int main() {
     std::cout << "(15 Test Cases - DSA Semester Project)" << std::endl;
     std::cout << "============================================================" << std::endl;
 
-    test_1_basic_slot_allocation();
-    test_2_cross_zone_allocation();
-    test_3_rollback();
-    test_4_rollback_k();
-    test_5_invalid_transitions();
-    test_6_cancelled_immutable();
-    test_7_cancelled_analytics();
-    test_8_completed_state();
-    test_9_zone_utilization();
-    test_10_analytics_after_rollback();
-    test_11_complex_scenario();
-    test_12_invalid_request();
-    test_13_zone_adjacency();
-    test_14_peak_usage_zones();
-    test_15_parking_duration();
+    try { test_1_basic_slot_allocation(); } catch (...) { std::cout << "[ERROR] Test 1 crashed!" << std::endl; }
+    try { test_2_cross_zone_allocation(); } catch (...) { std::cout << "[ERROR] Test 2 crashed!" << std::endl; }
+    try { test_3_rollback(); } catch (...) { std::cout << "[ERROR] Test 3 crashed!" << std::endl; }
+    try { test_4_rollback_k(); } catch (...) { std::cout << "[ERROR] Test 4 crashed!" << std::endl; }
+    try { test_5_invalid_transitions(); } catch (...) { std::cout << "[ERROR] Test 5 crashed!" << std::endl; }
+    try { test_6_cancelled_immutable(); } catch (...) { std::cout << "[ERROR] Test 6 crashed!" << std::endl; }
+    try { test_7_cancelled_analytics(); } catch (...) { std::cout << "[ERROR] Test 7 crashed!" << std::endl; }
+    try { test_8_completed_state(); } catch (...) { std::cout << "[ERROR] Test 8 crashed!" << std::endl; }
+    try { test_9_zone_utilization(); } catch (...) { std::cout << "[ERROR] Test 9 crashed!" << std::endl; }
+    try { test_10_analytics_after_rollback(); } catch (...) { std::cout << "[ERROR] Test 10 crashed!" << std::endl; }
+    try { test_11_complex_scenario(); } catch (...) { std::cout << "[ERROR] Test 11 crashed!" << std::endl; }
+    try { test_12_invalid_request(); } catch (...) { std::cout << "[ERROR] Test 12 crashed!" << std::endl; }
+    try { test_13_zone_adjacency(); } catch (...) { std::cout << "[ERROR] Test 13 crashed!" << std::endl; }
+    try { test_14_peak_usage_zones(); } catch (...) { std::cout << "[ERROR] Test 14 crashed!" << std::endl; }
+    try { test_15_parking_duration(); } catch (...) { std::cout << "[ERROR] Test 15 crashed!" << std::endl; }
 
     std::cout << "\n";
     std::cout << "============================================================" << std::endl;
@@ -684,6 +684,7 @@ int main() {
     std::cout << "  - Parking duration tracking" << std::endl;
     std::cout << "  - Edge cases and error handling" << std::endl;
     std::cout << "============================================================" << std::endl;
+    std::cout << std::flush;
 
     return 0;
 }

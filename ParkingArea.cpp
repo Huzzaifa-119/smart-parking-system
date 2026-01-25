@@ -13,11 +13,43 @@ ParkingArea::ParkingArea(int initialCapacity) {
     zoneID = 0;
     capacity = initialCapacity;
     numSlots = 0;
+    slots = nullptr;
     slots = new ParkingSlot[capacity];
 }
 
+ParkingArea::ParkingArea(const ParkingArea& other) {
+    areaID = other.areaID;
+    zoneID = other.zoneID;
+    capacity = other.capacity;
+    numSlots = other.numSlots;
+    slots = new ParkingSlot[capacity];
+    for (int i = 0; i < numSlots; i++) {
+        slots[i] = other.slots[i];
+    }
+}
+
+ParkingArea& ParkingArea::operator=(const ParkingArea& other) {
+    if (this != &other) {
+        if (slots != nullptr) {
+            delete[] slots;
+        }
+        areaID = other.areaID;
+        zoneID = other.zoneID;
+        capacity = other.capacity;
+        numSlots = other.numSlots;
+        slots = new ParkingSlot[capacity];
+        for (int i = 0; i < numSlots; i++) {
+            slots[i] = other.slots[i];
+        }
+    }
+    return *this;
+}
+
 ParkingArea::~ParkingArea() {
-    delete[] slots;
+    if (slots != nullptr) {
+        delete[] slots;
+        slots = nullptr;
+    }
 }
 
 void ParkingArea::addSlot(const ParkingSlot& slot) {

@@ -18,6 +18,12 @@ public:
     // Constructor with initial capacity
     ParkingArea(int initialCapacity);
 
+    // Copy constructor
+    ParkingArea(const ParkingArea& other);
+
+    // Copy assignment operator
+    ParkingArea& operator=(const ParkingArea& other);
+
     // Destructor
     ~ParkingArea();
 

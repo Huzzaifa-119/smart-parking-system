@@ -21,6 +21,12 @@ public:
     // Constructor with initial capacity
     Zone(int initialCapacity);
 
+    // Copy constructor
+    Zone(const Zone& other);
+
+    // Copy assignment operator
+    Zone& operator=(const Zone& other);
+
     // Destructor
     ~Zone();
 

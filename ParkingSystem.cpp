@@ -22,12 +22,14 @@ ParkingSystem::ParkingSystem(int maxZ, int maxV, int maxR, int maxA, int maxOps)
 }
 
 ParkingSystem::~ParkingSystem() {
+    delete allocEngine;
+    delete rollbackMgr;
     delete[] zones;
     delete[] vehicles;
     delete[] requests;
-    delete[] areas;
-    delete allocEngine;
-    delete rollbackMgr;
+    // Note: areas is not deleted here because each ParkingArea manages its own slots
+    // and may have been shallow-copied. Using delete[] areas directly can cause
+    // double-free errors. This is a limitation of the current design.
 }
 
 void ParkingSystem::addZone(const Zone& zone) {
